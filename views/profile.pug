@@ -1,0 +1,14 @@
+doctype html
+html
+    include includes/head.pug
+    body
+    div(class="wrapper")
+        div(class="inner-wrapper")
+            header
+            h1= user.name
+
+            ul
+                li= user.username
+                li= user.email
+
+            p: a(href="/") Logout

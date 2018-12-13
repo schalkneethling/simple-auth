@@ -1,0 +1,25 @@
+doctype html
+html
+    include includes/head.pug
+    body
+    div(class="wrapper")
+        div(class="inner-wrapper")
+            header
+            h1 Log into your account
+
+            if authError
+                p(class="form-errors inline")= authError.description
+
+            form(name="login" action="/login" method="post")
+                    div(class="field-group")
+                        label(for="email") email
+                        input(type="email" name="email" id="email")
+
+                    div(class="field-group")
+                        label(for="password") password
+                        input(type="password" name="password" id="password")
+
+                    input(class="button button-wide" type="submit" value="login")
+
+                    p Don’t have an account? 
+                        a(href="/register") Register

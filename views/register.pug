@@ -1,0 +1,72 @@
+doctype html
+html
+    include includes/head.pug
+    body
+    div(class="wrapper")
+        div(class="inner-wrapper")
+            header
+            h1 Welcome to simpleAuth
+
+            if registrationSuccessful
+                p(class="thank-you") Registration successful, welcome #{name}
+                    a(href="/" class="button small-login") Login
+            else
+                p Please note that all fields are required
+                form(name="register" action="/register" method="post")
+                    div(class="field-group")
+                        if invalidFields && invalidFields["name"]
+                            p(class="form-errors inline")= invalidFields["name"]
+
+                        label(for="name") Name
+                        if formFields
+                            input(type="text" id="name" name="fullname" value=formFields.name required)
+                        else
+                            input(type="text" id="name" name="fullname" required)
+
+                    div(class="field-group")
+                        if invalidFields && invalidFields["email"]
+                            p(class="form-errors inline")= invalidFields["email"]
+
+                        label(for="email") Email
+                        if formFields 
+                            input(type="email" id="email" name="email" value=formFields.email required)
+                        else
+                            input(type="email" id="email" name="email" required)
+                    
+                    div(class="field-group")
+                        if invalidFields && invalidFields["username"]
+                                p(class="form-errors inline")= invalidFields["username"]
+
+                        label(for="username") Username
+                        if formFields
+                            input(type="text" id="username" name="username" value=formFields.username required)
+                        else
+                            input(type="text" id="username" name="username" required)
+
+                    div(class="field-group")
+                        if invalidFields && invalidFields["password"]
+                                    p(class="form-errors inline")= invalidFields["password"]
+
+                        if invalidFields && invalidFields["passwordsMismatch"]
+                            p(class="form-errors inline")= invalidFields["passwordsMismatch"]
+
+                        label(for="password") Password
+                        if formFields
+                            input(type="password" id="password" name="password" value=formFields.password required)
+                        else
+                            input(type="password" id="password" name="password" required)
+
+                    div(class="field-group")
+                        if invalidFields && invalidFields["passwordConfirmation"]
+                                        p(class="form-errors inline")= invalidFields["passwordConfirmation"]
+
+                        label(for="password-conf") Confirm Password
+                        if formFields
+                            input(type="password" id="password-conf" name="password_conf" value=formFields.passwordConfirmation required)
+                        else
+                            input(type="password" id="password-conf" name="password_conf" required)
+
+                    input(class="button button-wide" type="submit" value="register")
+
+                    p Already have an account? 
+                        a(href="/login") Login
